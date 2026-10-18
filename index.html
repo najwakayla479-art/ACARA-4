@@ -1,919 +1,220 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Sistem Informasi Statistik Kabupaten Bantul</title>
 
 <style>
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-.menu-link {
-    color: white;
-    display: block;
-    padding: 10px;
-}
-
-.menu-link:hover {
-    background-color: #8E24AA;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-.data-table {
-    width: 90%;
-    margin: auto;
-    border: 1px solid #999;
-}
-
-.data-table th,
-.data-table td {
-    border: 1px solid #999;
-    padding: 7px;
-}
-
-.data-table th {
-    background-color: #E1BEE7;
-}
-
-.header-table {
-    width: 100%;
-}
-
-.header-purple {
-    background-color: #6A1B9A;
-}
-
-.content {
-    width: 90%;
-    margin: auto;
-}
-
-.hidden {
-    display: none;
-}
-
-.footer {
-    background-color: #6A1B9A;
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 35px;
-}
-
+body{margin:0;font-family:Arial;background:white}
+a{text-decoration:none}
+.header,.footer{background:#6A1B9A;color:white}
+.header{padding:12px}
+.footer{text-align:center;padding:25px;margin-top:35px}
+.container{width:90%;margin:25px auto}
+.menu{background:#6A1B9A;color:white;padding:10px;border:0}
+.menu a{color:white;display:block;padding:8px}
+.menu a:hover{background:#8E24AA}
+.data{width:100%;border-collapse:collapse;margin-top:15px}
+.data th,.data td{border:1px solid #999;padding:7px}
+.data th{background:#E1BEE7}
+.title{background:#8E24AA;color:white;padding:10px}
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- ================================================= -->
 <!-- HEADER -->
-<!-- ================================================= -->
-
-<table class="header-purple header-table"
-       cellpadding="12"
-       cellspacing="0">
-
+<table width="100%" class="header">
 <tr>
-
-
-<!-- JUDUL -->
-
 <td>
-
-<font color="white" size="5">
-
-<b>
-SISTEM INFORMASI STATISTIK
-</b>
-
-</font>
-
-<br>
-
-<font color="white" size="4">
-
-Kabupaten Bantul
-
-</font>
-
+<font size="5"><b>SISTEM INFORMASI STATISTIK</b></font><br>
+<font size="4">Kabupaten Bantul</font>
 </td>
 
-
-<!-- LOGO KABUPATEN BANTUL -->
-
-<td width="100"
-    align="center">
-
+<td width="120" align="center">
 <img src="Lambang_Bantul.png"
      width="100"
      height="115"
      alt="Lambang Kabupaten Bantul">
-
 </td>
 
-
-<!-- MENU -->
-
-<td width="70"
-    align="center"
-    valign="top">
-
-
+<td width="70" align="center">
 <details>
+<summary style="cursor:pointer;font-size:30px">☰</summary>
 
-
-<summary
-style="
-list-style:none;
-cursor:pointer;
-color:white;
-font-size:30px;
-">
-
-☰
-
-</summary>
-
-
-<table bgcolor="#6A1B9A"
-       width="200"
-       cellpadding="0"
-       cellspacing="0"
-       align="right">
-
-
-<tr>
-
-<td>
-
-<a href="#"
-   class="menu-link"
-   onclick="showTable('jumlah'); return false;">
-
-Jumlah Penduduk
-
-</a>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-
-<a href="#"
-   class="menu-link"
-   onclick="showTable('persentase'); return false;">
-
-Persentase Penduduk
-
-</a>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-
-<a href="#"
-   class="menu-link"
-   onclick="showTable('kepadatan'); return false;">
-
-Kepadatan Penduduk
-
-</a>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-
-<a href="#"
-   class="menu-link"
-   onclick="showTable('rasio'); return false;">
-
-Rasio Jenis Kelamin
-
-</a>
-
-</td>
-
-</tr>
-
-
-</table>
-
+<div class="menu">
+<a href="#" onclick="tampil('jumlah');return false">Jumlah Penduduk</a>
+<a href="#" onclick="tampil('persentase');return false">Persentase Penduduk</a>
+<a href="#" onclick="tampil('kepadatan');return false">Kepadatan Penduduk</a>
+<a href="#" onclick="tampil('rasio');return false">Rasio Jenis Kelamin</a>
+</div>
 
 </details>
-
 </td>
-
 </tr>
-
 </table>
 
 
+<!-- KONTEN -->
+<div class="container">
 
-<!-- ================================================= -->
-<!-- BREADCRUMB -->
-<!-- ================================================= -->
+Informasi Kependudukan &gt;
+<span id="subjudul">Jumlah Penduduk</span>
 
-<br>
-
-<div class="content">
-
-<font color="gray" size="3">
-
-Informasi Kependudukan
-
-&gt;
-
-<span id="judul-tabel">
-Jumlah Penduduk
-</span>
-
-</font>
-
-</div>
-
-
-<br>
-
-
-
-<!-- ================================================= -->
-<!-- TABEL JUMLAH PENDUDUK -->
-<!-- ================================================= -->
-
-<div id="jumlah">
-
-
-<table class="data-table">
-
+<table class="data">
 
 <tr>
-
-<td colspan="3"
-    bgcolor="#8E24AA">
-
-<font color="white"
-      size="4">
-
-<b>
-Jumlah Penduduk Kabupaten Bantul Tahun 2024
-</b>
-
-</font>
-
+<td colspan="3" class="title">
+<b id="judul">Jumlah Penduduk Kabupaten Bantul Tahun 2024</b>
 </td>
-
-</tr>
-
-
-<tr>
-
-<th>
-No.
-</th>
-
-<th>
-Kecamatan
-</th>
-
-<th>
-Jumlah Penduduk (jiwa)
-</th>
-
-</tr>
-
-
-<tr>
-<td>1</td>
-<td>Srandakan</td>
-<td align="right">31.179</td>
 </tr>
 
 <tr>
-<td>2</td>
-<td>Sanden</td>
-<td align="right">31.883</td>
+<th>No.</th>
+<th>Kecamatan</th>
+<th id="satuan">Jumlah Penduduk (jiwa)</th>
 </tr>
 
-<tr>
-<td>3</td>
-<td>Kretek</td>
-<td align="right">30.866</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>Pundong</td>
-<td align="right">36.331</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>Bambanglipuro</td>
-<td align="right">42.153</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>Pandak</td>
-<td align="right">52.732</td>
-</tr>
-
-<tr>
-<td>7</td>
-<td>Bantul</td>
-<td align="right">66.705</td>
-</tr>
-
-<tr>
-<td>8</td>
-<td>Jetis</td>
-<td align="right">59.962</td>
-</tr>
-
-<tr>
-<td>9</td>
-<td>Imogiri</td>
-<td align="right">65.013</td>
-</tr>
-
-<tr>
-<td>10</td>
-<td>Dlingo</td>
-<td align="right">40.524</td>
-</tr>
-
-<tr>
-<td>11</td>
-<td>Pleret</td>
-<td align="right">50.191</td>
-</tr>
-
-<tr>
-<td>12</td>
-<td>Piyungan</td>
-<td align="right">54.691</td>
-</tr>
-
-<tr>
-<td>13</td>
-<td>Banguntapan</td>
-<td align="right">117.875</td>
-</tr>
-
-<tr>
-<td>14</td>
-<td>Sewon</td>
-<td align="right">103.238</td>
-</tr>
-
-<tr>
-<td>15</td>
-<td>Kasihan</td>
-<td align="right">108.779</td>
-</tr>
-
-<tr>
-<td>16</td>
-<td>Pajangan</td>
-<td align="right">38.113</td>
-</tr>
-
-<tr>
-<td>17</td>
-<td>Sedayu</td>
-<td align="right">50.034</td>
-</tr>
-
-
-<tr>
-
-<td></td>
-
-<td>
-<b>
-Kabupaten Bantul
-</b>
-</td>
-
-<td align="right">
-
-<b>
-980.269
-</b>
-
-</td>
-
-</tr>
-
+<tbody id="isi"></tbody>
 
 </table>
 
 </div>
 
 
-
-<!-- ================================================= -->
-<!-- TABEL PERSENTASE PENDUDUK -->
-<!-- ================================================= -->
-
-<div id="persentase"
-     class="hidden">
-
-
-<table class="data-table">
-
-
-<tr>
-
-<td colspan="3"
-    bgcolor="#8E24AA">
-
-<font color="white"
-      size="4">
-
-<b>
-Persentase Penduduk Kabupaten Bantul Tahun 2024
-</b>
-
-</font>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<th>
-No.
-</th>
-
-<th>
-Kecamatan
-</th>
-
-<th>
-Persentase Penduduk (%)
-</th>
-
-</tr>
-
-
-<tr><td>1</td><td>Srandakan</td><td align="right">3,18</td></tr>
-
-<tr><td>2</td><td>Sanden</td><td align="right">3,25</td></tr>
-
-<tr><td>3</td><td>Kretek</td><td align="right">3,15</td></tr>
-
-<tr><td>4</td><td>Pundong</td><td align="right">3,71</td></tr>
-
-<tr><td>5</td><td>Bambanglipuro</td><td align="right">4,30</td></tr>
-
-<tr><td>6</td><td>Pandak</td><td align="right">5,38</td></tr>
-
-<tr><td>7</td><td>Bantul</td><td align="right">6,80</td></tr>
-
-<tr><td>8</td><td>Jetis</td><td align="right">6,12</td></tr>
-
-<tr><td>9</td><td>Imogiri</td><td align="right">6,63</td></tr>
-
-<tr><td>10</td><td>Dlingo</td><td align="right">4,13</td></tr>
-
-<tr><td>11</td><td>Pleret</td><td align="right">5,12</td></tr>
-
-<tr><td>12</td><td>Piyungan</td><td align="right">5,58</td></tr>
-
-<tr><td>13</td><td>Banguntapan</td><td align="right">12,02</td></tr>
-
-<tr><td>14</td><td>Sewon</td><td align="right">10,53</td></tr>
-
-<tr><td>15</td><td>Kasihan</td><td align="right">11,10</td></tr>
-
-<tr><td>16</td><td>Pajangan</td><td align="right">3,89</td></tr>
-
-<tr><td>17</td><td>Sedayu</td><td align="right">5,10</td></tr>
-
-
-<tr>
-
-<td></td>
-
-<td>
-<b>
-Kabupaten Bantul
-</b>
-</td>
-
-<td align="right">
-
-<b>
-100,00
-</b>
-
-</td>
-
-</tr>
-
-
-</table>
-
-</div>
-
-
-
-<!-- ================================================= -->
-<!-- TABEL KEPADATAN -->
-<!-- ================================================= -->
-
-<div id="kepadatan"
-     class="hidden">
-
-
-<table class="data-table">
-
-
-<tr>
-
-<td colspan="3"
-    bgcolor="#8E24AA">
-
-<font color="white"
-      size="4">
-
-<b>
-Kepadatan Penduduk Kabupaten Bantul Tahun 2024
-</b>
-
-</font>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<th>
-No.
-</th>
-
-<th>
-Kecamatan
-</th>
-
-<th>
-Kepadatan Penduduk (jiwa/km²)
-</th>
-
-</tr>
-
-
-<tr><td>1</td><td>Srandakan</td><td align="right">1.684,44</td></tr>
-
-<tr><td>2</td><td>Sanden</td><td align="right">1.379,38</td></tr>
-
-<tr><td>3</td><td>Kretek</td><td align="right">1.166,07</td></tr>
-
-<tr><td>4</td><td>Pundong</td><td align="right">1.572,09</td></tr>
-
-<tr><td>5</td><td>Bambanglipuro</td><td align="right">1.825,20</td></tr>
-
-<tr><td>6</td><td>Pandak</td><td align="right">2.173,26</td></tr>
-
-<tr><td>7</td><td>Bantul</td><td align="right">3.058,74</td></tr>
-
-<tr><td>8</td><td>Jetis</td><td align="right">2.548,43</td></tr>
-
-<tr><td>9</td><td>Imogiri</td><td align="right">1.183,80</td></tr>
-
-<tr><td>10</td><td>Dlingo</td><td align="right">680,65</td></tr>
-
-<tr><td>11</td><td>Pleret</td><td align="right">2.074,01</td></tr>
-
-<tr><td>12</td><td>Piyungan</td><td align="right">1.644,40</td></tr>
-
-<tr><td>13</td><td>Banguntapan</td><td align="right">4.147,46</td></tr>
-
-<tr><td>14</td><td>Sewon</td><td align="right">3.700,02</td></tr>
-
-<tr><td>15</td><td>Kasihan</td><td align="right">3.389,39</td></tr>
-
-<tr><td>16</td><td>Pajangan</td><td align="right">1.144,91</td></tr>
-
-<tr><td>17</td><td>Sedayu</td><td align="right">1.463,41</td></tr>
-
-
-<tr>
-
-<td></td>
-
-<td>
-<b>
-Kabupaten Bantul
-</b>
-</td>
-
-<td align="right">
-
-<b>
-1.915,67
-</b>
-
-</td>
-
-</tr>
-
-
-</table>
-
-</div>
-
-
-
-<!-- ================================================= -->
-<!-- TABEL RASIO JENIS KELAMIN -->
-<!-- ================================================= -->
-
-<div id="rasio"
-     class="hidden">
-
-
-<table class="data-table">
-
-
-<tr>
-
-<td colspan="3"
-    bgcolor="#8E24AA">
-
-<font color="white"
-      size="4">
-
-<b>
-Rasio Jenis Kelamin Kabupaten Bantul Tahun 2024
-</b>
-
-</font>
-
-</td>
-
-</tr>
-
-
-<tr>
-
-<th>
-No.
-</th>
-
-<th>
-Kecamatan
-</th>
-
-<th>
-Rasio Jenis Kelamin
-</th>
-
-</tr>
-
-
-<tr><td>1</td><td>Srandakan</td><td align="right">99,02</td></tr>
-
-<tr><td>2</td><td>Sanden</td><td align="right">97,76</td></tr>
-
-<tr><td>3</td><td>Kretek</td><td align="right">96,62</td></tr>
-
-<tr><td>4</td><td>Pundong</td><td align="right">98,24</td></tr>
-
-<tr><td>5</td><td>Bambanglipuro</td><td align="right">98,04</td></tr>
-
-<tr><td>6</td><td>Pandak</td><td align="right">100,96</td></tr>
-
-<tr><td>7</td><td>Bantul</td><td align="right">98,62</td></tr>
-
-<tr><td>8</td><td>Jetis</td><td align="right">99,68</td></tr>
-
-<tr><td>9</td><td>Imogiri</td><td align="right">98,57</td></tr>
-
-<tr><td>10</td><td>Dlingo</td><td align="right">98,57</td></tr>
-
-<tr><td>11</td><td>Pleret</td><td align="right">101,59</td></tr>
-
-<tr><td>12</td><td>Piyungan</td><td align="right">98,96</td></tr>
-
-<tr><td>13</td><td>Banguntapan</td><td align="right">98,70</td></tr>
-
-<tr><td>14</td><td>Sewon</td><td align="right">100,11</td></tr>
-
-<tr><td>15</td><td>Kasihan</td><td align="right">99,33</td></tr>
-
-<tr><td>16</td><td>Pajangan</td><td align="right">100,46</td></tr>
-
-<tr><td>17</td><td>Sedayu</td><td align="right">99,17</td></tr>
-
-
-<tr>
-
-<td></td>
-
-<td>
-<b>
-Kabupaten Bantul
-</b>
-</td>
-
-<td align="right">
-
-<b>
-99,20
-</b>
-
-</td>
-
-</tr>
-
-
-</table>
-
-</div>
-
-
-
-<!-- ================================================= -->
-<!-- FOOTER / PENUTUP -->
-<!-- ================================================= -->
-
+<!-- FOOTER -->
 <div class="footer">
-
-
-<!-- LOGO KEDUA -->
 
 <img src="Simbolis_Bantul.png"
      width="160"
      alt="Simbolis Bantul">
 
+<br><br>
 
-<br>
-<br>
-
-
-<b>
-PEMERINTAH KABUPATEN BANTUL
-</b>
-
-
-<br>
-
+<b>PEMERINTAH KABUPATEN BANTUL</b><br>
 
 Sistem Informasi Statistik Kabupaten Bantul
 
-
-<br>
-<br>
-
+<br><br>
 
 Sumber data:
-
-
 <a href="https://bantulkab.bps.go.id/en/statistics-table/1/NzkwIzE=/population--population-growth-rate--percentage--distribution-of-population--population-density--and--population-sex-ratio-by-district-in-bantul-regency--2024.html"
-   target="_blank"
-   style="color:white;">
+target="_blank"
+style="color:white">
 
 BPS Kabupaten Bantul – Statistik Penduduk 2024
 
 </a>
 
+<br><br>
 
-<br>
-<br>
-
-
-Data Tahun 2024
-
-
-<br>
-
-
-Departemen Sains Informasi Geografi
-
-
-<br>
-
-
-Fakultas Geografi
-
-
-<br>
-
-
+Data Tahun 2024<br>
+Departemen Sains Informasi Geografi<br>
+Fakultas Geografi<br>
 Universitas Gadjah Mada
-
 
 </div>
 
 
-
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
-
 <script>
 
-function showTable(id) {
+const kecamatan=[
+"Srandakan","Sanden","Kretek","Pundong","Bambanglipuro",
+"Pandak","Bantul","Jetis","Imogiri","Dlingo","Pleret",
+"Piyungan","Banguntapan","Sewon","Kasihan","Pajangan","Sedayu"
+];
 
+const data={
 
-    var tables = [
+jumlah:[
+31179,31883,30866,36331,42153,52732,66705,59962,65013,
+40524,50191,54691,117875,103238,108779,38113,50034
+],
 
-        "jumlah",
-        "persentase",
-        "kepadatan",
-        "rasio"
+persentase:[
+"3,18","3,25","3,15","3,71","4,30","5,38","6,80","6,12",
+"6,63","4,13","5,12","5,58","12,02","10,53","11,10","3,89","5,10"
+],
 
-    ];
+kepadatan:[
+"1.684,44","1.379,38","1.166,07","1.572,09","1.825,20",
+"2.173,26","3.058,74","2.548,43","1.183,80","680,65",
+"2.074,01","1.644,40","4.147,46","3.700,02","3.389,39",
+"1.144,91","1.463,41"
+],
 
+rasio:[
+"99,02","97,76","96,62","98,24","98,04","100,96","98,62",
+"99,68","98,57","98,57","101,59","98,96","98,70","100,11",
+"99,33","100,46","99,17"
+]
 
-    for (
-        var i = 0;
-        i < tables.length;
-        i++
-    ) {
+};
 
+const info={
 
-        document
-        .getElementById(tables[i])
-        .classList
-        .add("hidden");
+jumlah:[
+"Jumlah Penduduk","Jumlah Penduduk (jiwa)"
+],
 
+persentase:[
+"Persentase Penduduk","Persentase Penduduk (%)"
+],
 
-    }
+kepadatan:[
+"Kepadatan Penduduk","Kepadatan Penduduk (jiwa/km²)"
+],
 
+rasio:[
+"Rasio Jenis Kelamin","Rasio Jenis Kelamin"
+]
 
-    document
-    .getElementById(id)
-    .classList
-    .remove("hidden");
+};
 
+function tampil(jenis){
 
-    var titles = {
+document.getElementById("subjudul").innerHTML=info[jenis][0];
 
+document.getElementById("judul").innerHTML=
+info[jenis][0]+" Kabupaten Bantul Tahun 2024";
 
-        jumlah:
-        "Jumlah Penduduk",
+document.getElementById("satuan").innerHTML=info[jenis][1];
 
+let html="";
 
-        persentase:
-        "Persentase Penduduk",
+data[jenis].forEach((nilai,i)=>{
 
+html+=`
+<tr>
+<td>${i+1}</td>
+<td>${kecamatan[i]}</td>
+<td align="right">${nilai}</td>
+</tr>`;
 
-        kepadatan:
-        "Kepadatan Penduduk",
+});
 
+html+=`
+<tr>
+<td></td>
+<td><b>Kabupaten Bantul</b></td>
+<td align="right"><b>${total(jenis)}</b></td>
+</tr>`;
 
-        rasio:
-        "Rasio Jenis Kelamin"
-
-
-    };
-
-
-    document
-    .getElementById("judul-tabel")
-    .innerHTML =
-    titles[id];
-
+document.getElementById("isi").innerHTML=html;
 
 }
 
-</script>
+function total(jenis){
 
+if(jenis=="jumlah") return "980.269";
+if(jenis=="persentase") return "100,00";
+if(jenis=="kepadatan") return "1.915,67";
+if(jenis=="rasio") return "99,20";
+
+}
+
+tampil("jumlah");
+
+</script>
 
 </body>
 </html>
